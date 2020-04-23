@@ -28,7 +28,7 @@ public class ApplicationLoader {
         for (int i = 0; i < fileList.length; i++) {
             if (fileList[i].isDirectory()) {
                 String name = fileList[i].getName();
-                if (name != "scripts" && name != "python" && name != "files"){
+                if (!name.equals("scripts") && !name.equals("python") && !name.equals("files")){
                     workingBuilds.addAll(loadBuildsFromDir(fileList[i]));
                 }
             }else if(fileList[i].getName().toLowerCase().equals("blender.exe")){
