@@ -32,11 +32,12 @@ public class ApplicationLoader {
                     workingBuilds.addAll(loadBuildsFromDir(fileList[i]));
                 }
             }else if(fileList[i].getName().toLowerCase().equals("blender.exe")){
-                System.out.println("blender.exe at: "+fileList[i].getAbsolutePath());
-                workingBuilds.add(new Build(fileList[i]));
+                System.out.println("blender located at: "+fileList[i].getAbsolutePath());
+                //confirm the build will work, then add it to the list
+                Build buildTemp = new Build(fileList[i]);
+                if(buildTemp.usable) workingBuilds.add(buildTemp);
             }
         }
-
         return workingBuilds;
     }
 }
