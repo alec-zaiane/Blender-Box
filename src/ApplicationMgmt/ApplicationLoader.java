@@ -19,8 +19,7 @@ public class ApplicationLoader {
         //confirm the input is a directory, readable, and exists
         if (!dir.exists()) throw new FileNotFoundException("File \"" + dir.getAbsolutePath() + "\" does not exist");
         if (!dir.canRead()) throw new FileNotFoundException("File \"" + dir.getAbsolutePath() + "\" is not readable");
-        if (!dir.isDirectory())
-            throw new FileNotFoundException("File \"" + dir.getAbsolutePath() + "\" is not a directory");
+        if (!dir.isDirectory()) throw new FileNotFoundException("File \"" + dir.getAbsolutePath() + "\" is not a directory");
         ArrayList<Build> workingBuilds = new ArrayList<Build>(); //Create new arrayList to contain the working builds
         //test for "blender.exe" in the directory, and for other subdirectories
         //ignore directories called "datafiles","python","scripts"

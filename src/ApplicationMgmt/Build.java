@@ -1,6 +1,7 @@
 package ApplicationMgmt;
 
 import java.io.File;
+import java.io.IOException;
 
 
 public class Build {
@@ -16,11 +17,13 @@ public class Build {
      */
     public Build(File location) {
         this.location = location;
-        if (this.location.getName().equals("blender.exe") && this.location.isFile()) usable = true; //confirm the location is a blender file
+        if (this.location.getName().equals("blender.exe") && this.location.isFile())
+            usable = true; //confirm the location is a blender file
         this.Time = location.lastModified();
     }
 
     public void run() {
-
+        try { Runtime.getRuntime().exec(location.getAbsolutePath());
+        }catch (IOException e) { System.out.println(e);}
     }
 }
