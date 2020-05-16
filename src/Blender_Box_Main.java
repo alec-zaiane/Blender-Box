@@ -1,8 +1,10 @@
 import ApplicationMgmt.ApplicationLoader;
 import ApplicationMgmt.Build;
+import ProjectMgmt.Blend;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -22,7 +24,11 @@ public class Blender_Box_Main {
         }
         System.out.println("what index would you like to run?");
         int idx = numScan.nextInt();
-        builds.get(idx).run();
+        try {
+            builds.get(idx).run(new Blend(new File("F:\\Blender\\Weekly\\Week 92\\Week 92.blend")));
+        }catch(IOException e){
+            e.printStackTrace();
+        }
 
     }
 }

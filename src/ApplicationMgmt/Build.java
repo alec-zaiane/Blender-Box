@@ -1,5 +1,7 @@
 package ApplicationMgmt;
 
+import ProjectMgmt.Blend;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -32,7 +34,7 @@ public class Build {
     /**
      * runs the build from exe location
      */
-    public void run() {
+    public void run() throws IOException {
         try {
             Runtime.getRuntime().exec(location.getAbsolutePath());
         } catch (IOException e) {
@@ -40,8 +42,18 @@ public class Build {
         }
     }
 
+    public void run(Blend file) throws IOException {
+        try {
+            Runtime.getRuntime().exec(location.getAbsolutePath()+" \""+file.getLocation().getAbsolutePath()+"\"");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     /**
      * verify that this build will work
+     *
      * @return whether or not build exists and works
      */
     public boolean verify() {
@@ -49,11 +61,11 @@ public class Build {
             if (this.location.getName().equals("blender.exe") && this.location.isFile()) {
                 usable = true;
                 return true;
-            }else{
+            } else {
                 usable = false;
                 return false;
             }
-        }catch(SecurityException e){
+        } catch (SecurityException e) {
             usable = false;
             return false;
         }
