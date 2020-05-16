@@ -14,23 +14,48 @@ public class Build {
 
     /**
      * Creates a new build object from the executable's location
+     *
      * @param location location of blender.exe for this build
      */
     public Build(File location) {
         this.location = location;
-        if (this.location.getName().equals("blender.exe") && this.location.isFile())
-            usable = true; //confirm the location is a blender file
+        verify();
         try {
             this.Time = location.lastModified();
-        } catch (SecurityException e){
+        } catch (SecurityException e) {
             //TODO implement logging
             System.out.println("Security Exception, time not readable");
             e.printStackTrace();
         }
     }
 
+    /**
+     * runs the build from exe location
+     */
     public void run() {
-        try { Runtime.getRuntime().exec(location.getAbsolutePath());
-        }catch (IOException e) { e.printStackTrace();}
+        try {
+            Runtime.getRuntime().exec(location.getAbsolutePath());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * verify that this build will work
+     * @return whether or not build exists and works
+     */
+    public boolean verify() {
+        try {
+            if (this.location.getName().equals("blender.exe") && this.location.isFile()) {
+                usable = true;
+                return true;
+            }else{
+                usable = false;
+                return false;
+            }
+        }catch(SecurityException e){
+            usable = false;
+            return false;
+        }
     }
 }
