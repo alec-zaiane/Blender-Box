@@ -25,6 +25,7 @@ public class Blender_Box_Main {
         System.out.println("what index would you like to run?");
         int idx = numScan.nextInt();
         try {
+            StorageManager.saveBlend(new Blend(new File("F:\\Blender\\Weekly\\Week 92\\Week 92.blend")));
             builds.get(idx).run(new Blend(new File("F:\\Blender\\Weekly\\Week 92\\Week 92.blend")));
         }catch(IOException e){
             e.printStackTrace();
