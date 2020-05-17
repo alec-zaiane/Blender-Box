@@ -11,7 +11,7 @@ public class ApplicationLoader {
 
 
     /**
-     * Recursively searches subdirectories for blender builds
+     * Recursively searches subdirectories for blender builds starting from dir
      * @param dir directory to start search from
      * @return list of usable blender builds in directory
      * @throws FileNotFoundException when dir is not found, not readable, or not a directory
